@@ -28,7 +28,7 @@ class management : Fragment() {
 
     inner class SendWOL : Thread() {
         override fun run() {
-            sock.bind(InetSocketAddress(7))
+            sock.bind(InetSocketAddress("192.168.150.255",7))
 
             var SendData : ByteArray = "FFFFFFFFFFFF".toByteArray()
 
