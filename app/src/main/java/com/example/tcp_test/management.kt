@@ -8,22 +8,16 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_management.*
 import java.net.*
 
-class management : Fragment() {
+class management : Fragment(R.layout.fragment_management) {
 
     var sock =  DatagramSocket(null)
     val COM_MAC = "00D861C36D40"
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         WOL_Button.setOnClickListener {
-
+            var SendThread = SendWOL()
+            SendThread.start()
         }
-
     }
 
     inner class SendWOL : Thread() {
