@@ -16,8 +16,12 @@ import java.net.*
 
 class management : Fragment(R.layout.fragment_management) {
 
-    val IP  = "192.168.150.18"
-    val Port = 5657
+    val ServerIP  = "192.168.150.18"
+    val ServerPort = 5657
+
+    val IP = "192.168.150.8"
+    val Port = 5656
+
     lateinit var InPutStream: InputStream
     lateinit var OutPutStream: OutputStream
     lateinit var sock:Socket
@@ -62,7 +66,7 @@ class management : Fragment(R.layout.fragment_management) {
 
 
             try {
-                sock = Socket(IP, Port)
+                sock = Socket(ServerIP, ServerPort)
             }catch (e:Exception){
                 activity?.runOnUiThread {
                     Toast.makeText(activity, "서버 연결 에러",  Toast.LENGTH_SHORT).show()
@@ -86,8 +90,36 @@ class management : Fragment(R.layout.fragment_management) {
                 }
                 return;
             }
+        }
+    }
 
+    inner class SendOff : Thread(){
+        override fun run() {
+            try {
+                sock = Socket(IP, Port)
 
+                InPutStream = sock.getInputStream()
+                OutPutStream = sock.getOutputStream()
+            }catch (e:Exception){
+                activity?.runOnUiThread {
+                    Toast.makeText(activity, "서버 연결 에러",  Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
+
+            try {
+                var data = "exit"
+                var SendData : ByteArray = ByteArray(1)
+
+                SendData.set(0, 4)
+                OutPutStream.write(SendData + data.toByteArray())
+                OutPutStream.flush()
+            }catch (e:Exception){
+                activity?.runOnUiThread {
+                    Toast.makeText(activity, "서버 연결 에러",  Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
         }
     }
 }
