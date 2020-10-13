@@ -60,17 +60,33 @@ class management : Fragment(R.layout.fragment_management) {
 //                }
 //            }
 
-            sock = Socket(IP, Port)
+
+            try {
+                sock = Socket(IP, Port)
+            }catch (e:Exception){
+                activity?.runOnUiThread {
+                    Toast.makeText(activity, "서버 연결 에러",  Toast.LENGTH_SHORT).show()
+                }
+                return;
+            }
 
             InPutStream = sock.getInputStream()
             OutPutStream = sock.getOutputStream()
-
             var data = "WOL"
             var SendData : ByteArray = ByteArray(1)
 
-            SendData.set(4, 1)
-            OutPutStream.write(SendData + data.toByteArray())
-            OutPutStream.flush()
+            SendData.set(0, 4)
+
+            try {
+                OutPutStream.write(SendData + data.toByteArray())
+                OutPutStream.flush()
+            }catch (e:Exception){
+                activity?.runOnUiThread {
+                    Toast.makeText(activity, "데이터 전송 에러",  Toast.LENGTH_SHORT).show()
+                }
+                return;
+            }
+
 
         }
     }
