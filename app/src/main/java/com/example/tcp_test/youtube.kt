@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_youtube.*
 import java.io.InputStream
 import java.io.OutputStream
@@ -26,6 +27,9 @@ class youtube : Fragment(R.layout.fragment_youtube) {
     lateinit var OutPutStream: OutputStream
     lateinit var sock:Socket
     var text : String? = null
+
+    val realm = Realm.getDefaultInstance()
+    var SettingData : Setting_Data = realm.createObject(Setting_Data::class.java)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         button.setOnClickListener {
