@@ -28,9 +28,6 @@ class youtube : Fragment(R.layout.fragment_youtube) {
     lateinit var sock:Socket
     var text : String? = null
 
-    val realm = Realm.getDefaultInstance()
-    var SettingData : Setting_Data = realm.createObject(Setting_Data::class.java)
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         button.setOnClickListener {
             var connet = Connet_Server()
