@@ -12,6 +12,7 @@ class management : Fragment() {
 
     var sock =  DatagramSocket(null)
     val COM_MAC = "00D861C36D40"
+    val IP = "192.168.150.18"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
