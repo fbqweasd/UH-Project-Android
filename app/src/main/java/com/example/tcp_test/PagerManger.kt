@@ -10,7 +10,7 @@ class PagerManger(var fm:FragmentManager):FragmentPagerAdapter(fm) {
         
         return when(position){
             0 -> "유튜브"
-            1 -> "에어컨"
+            1 -> "인증 Log"
             2 -> "관리"
             else -> "몰라유"
         }
@@ -19,6 +19,7 @@ class PagerManger(var fm:FragmentManager):FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         return when (position){
             0 -> youtube()
+            2 -> management()
             else -> Fragment(R.layout.youtube_tcp)
         }
     }

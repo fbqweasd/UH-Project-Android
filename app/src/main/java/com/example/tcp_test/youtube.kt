@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
+import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_youtube.*
 import java.io.InputStream
 import java.io.OutputStream
@@ -52,21 +54,35 @@ class youtube : Fragment(R.layout.fragment_youtube) {
 
     inner class SendYoutubeData : Thread() {
         override fun run() {
-            var data = input_Text.text.toString()
-            var SendData : ByteArray = ByteArray(1)
+            try {
+                var data = input_Text.text.toString()
+                var SendData : ByteArray = ByteArray(1)
 
-            SendData.set(0, 1)
-            OutPutStream.write(SendData + data.toByteArray())
-            OutPutStream.flush()
+                SendData.set(0, 1)
+                OutPutStream.write(SendData + data.toByteArray())
+                OutPutStream.flush()
+            }catch (e:Exception){
+                activity?.runOnUiThread {
+                    Toast.makeText(activity, "서버 연결 에러",  Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
         }
     }
 
     inner class Connet_Server : Thread() {
         override fun run() {
-            sock = Socket(IP, Port)
+            try {
+                sock = Socket(IP, Port)
 
-            InPutStream = sock.getInputStream()
-            OutPutStream = sock.getOutputStream()
+                InPutStream = sock.getInputStream()
+                OutPutStream = sock.getOutputStream()
+            }catch (e:Exception){
+                activity?.runOnUiThread {
+                    Toast.makeText(activity, "서버 연결 에러",  Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
         }
     }
 }
