@@ -11,8 +11,14 @@ import java.net.*
 
 class management : Fragment(R.layout.fragment_management) {
 
+<<<<<<< HEAD
+    var sock =  DatagramSocket(null)
+    val COM_MAC = "00D861C36D40"
+    val IP = "192.168.150.18"
+=======
     val ServerIP  = "ukc.iptime.org"
     val ServerPort = 5657
+>>>>>>> 61579302b6f1e7b9f1e31339a936e240261c1da9
 
     val IP = "192.168.150.8"
     val Port = 5656
