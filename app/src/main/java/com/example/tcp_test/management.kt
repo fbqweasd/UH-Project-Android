@@ -44,18 +44,37 @@ class management : Fragment(R.layout.fragment_management) {
 
             InPutStream = sock.getInputStream()
             OutPutStream = sock.getOutputStream()
-            var data = "WOL"
-            var SendData : ByteArray = ByteArray(1)
 
-            SendData.set(0, 4)
+            var SendData : ByteArray = ByteArray(2)
+            var RecvData : ByteArray = ByteArray(4)
+
+            SendData.set(0, 4) // Type Set
+            SendData.set(1, 0x6) // Len
+//            System.arraycopy(COM_MAC, 0, SendData, 2, COM_MAC.length)
+//            SendData += COM_MAC.toInt().toByte()
 
             try {
-                OutPutStream.write(SendData + data.toByteArray())
+                OutPutStream.write(SendData)
                 OutPutStream.flush()
+
+                var RecvSize = InPutStream.read(RecvData)
+                if(RecvSize == 0 || RecvData[0] != 4.toByte()){
+                    activity?.runOnUiThread {
+                        Toast.makeText(activity, "서버 처리 에러",  Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else{
+                    activity?.runOnUiThread {
+                        Toast.makeText(activity, "WOL 서버 정상 처리",  Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                sock.close()
             }catch (e:Exception){
                 activity?.runOnUiThread {
                     Toast.makeText(activity, "데이터 전송 에러",  Toast.LENGTH_SHORT).show()
                 }
+                sock.close()
                 return;
             }
         }

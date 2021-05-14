@@ -1,25 +1,16 @@
 package com.example.tcp_test
 
 import android.content.Context
-import android.content.Intent
-import android.content.Intent.getIntent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
-import io.realm.Realm
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_youtube.*
 import java.io.InputStream
 import java.io.OutputStream
-import java.net.Inet4Address
-import java.net.InetSocketAddress
 import java.net.Socket
-import java.util.*
 
-class youtube : Fragment(R.layout.fragment_youtube) {
+class youtubeClient : Fragment(R.layout.fragment_youtube) {
 
     val IP  = "192.168.150.8"
     val Port = 5656

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'realm-android'
+//apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 29
@@ -10,7 +10,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.example.tcp_test"
+        applicationId "com.ukc.tcp_test"
         minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
@@ -45,7 +45,7 @@ dependencies {
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
 }
 
-realm { // realm DB 사용
-    syncEnabled = true
-    kotlinExtensionsEnabled = true
-}
+//realm { // realm DB 사용
+//    syncEnabled = true
+//    kotlinExtensionsEnabled = true
+//}

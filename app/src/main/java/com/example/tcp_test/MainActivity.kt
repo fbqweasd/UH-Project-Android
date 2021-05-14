@@ -1,26 +1,11 @@
 package com.example.tcp_test
 
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.style.LineHeightSpan
 import android.view.Menu
 import android.view.MenuItem
-import androidx.viewpager.widget.PagerAdapter
-import io.realm.Realm
-import io.realm.RealmObject
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.io.InputStream
-import java.io.OutputStream
-import java.net.Socket
-import java.nio.charset.StandardCharsets
-
-open class Setting_Data : RealmObject(){
-    lateinit var server_ip:String
-    var server_port:Int = 0
-    lateinit var computer_mac:String
-}
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,8 +17,6 @@ class MainActivity : AppCompatActivity() {
 
         pager.adapter = PagerManger(supportFragmentManager)
         tabbar.setupWithViewPager(pager)
-
-        Realm.init(applicationContext)
 
         when {
             intent?.action == Intent.ACTION_SEND -> {
