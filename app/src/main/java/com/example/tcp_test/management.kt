@@ -11,17 +11,8 @@ import java.net.*
 
 class management : Fragment(R.layout.fragment_management) {
 
-<<<<<<< HEAD
-    var sock =  DatagramSocket(null)
-    val COM_MAC = "00D861C36D40"
-    val IP = "192.168.150.18"
-=======
     val ServerIP  = "ukc.iptime.org"
     val ServerPort = 5657
->>>>>>> 61579302b6f1e7b9f1e31339a936e240261c1da9
-
-    val IP = "192.168.150.8"
-    val Port = 5656
 
     lateinit var InPutStream: InputStream
     lateinit var OutPutStream: OutputStream
@@ -71,7 +62,7 @@ class management : Fragment(R.layout.fragment_management) {
                 }
                 else{
                     activity?.runOnUiThread {
-                        Toast.makeText(activity, "WOL 서버 정상 처리",  Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "컴퓨터 부팅 성공",  Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -82,36 +73,6 @@ class management : Fragment(R.layout.fragment_management) {
                 }
                 sock.close()
                 return;
-            }
-        }
-    }
-
-    inner class SendOff : Thread(){
-        override fun run() {
-            try {
-                sock = Socket(IP, Port)
-
-                InPutStream = sock.getInputStream()
-                OutPutStream = sock.getOutputStream()
-            }catch (e:Exception){
-                activity?.runOnUiThread {
-                    Toast.makeText(activity, "서버 연결 에러",  Toast.LENGTH_SHORT).show()
-                }
-                return
-            }
-
-            try {
-                var data = "exit"
-                var SendData : ByteArray = ByteArray(1)
-
-                SendData.set(0, 4)
-                OutPutStream.write(SendData + data.toByteArray())
-                OutPutStream.flush()
-            }catch (e:Exception){
-                activity?.runOnUiThread {
-                    Toast.makeText(activity, "서버 연결 에러",  Toast.LENGTH_SHORT).show()
-                }
-                return
             }
         }
     }
