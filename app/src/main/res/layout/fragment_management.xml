@@ -20,4 +20,11 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:text="컴퓨터 전원 OFF" />
+
+    <TextView
+        android:id="@+id/Debug_Test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="TextView" />
 </LinearLayout>
