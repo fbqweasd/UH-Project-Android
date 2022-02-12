@@ -9,17 +9,17 @@ class PagerManger(var fm:FragmentManager):FragmentPagerAdapter(fm) {
     override fun getPageTitle(position: Int): CharSequence? {
         
         return when(position){
-            0 -> "유튜브"
+            0 -> "원격 시동"
             1 -> "인증 Log"
-            2 -> "관리"
+            2 -> "유튜브"
             else -> "몰라유"
         }
     }
     
     override fun getItem(position: Int): Fragment {
         return when (position){
-            0 -> youtubeClient()
-            2 -> management()
+            0 -> management()
+            2 -> youtubeClient()
             else -> Fragment(R.layout.youtube_tcp)
         }
     }

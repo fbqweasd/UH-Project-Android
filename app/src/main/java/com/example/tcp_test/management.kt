@@ -60,15 +60,6 @@ class management : Fragment(R.layout.fragment_management) {
             SendData.set(6, Integer.parseInt(COM_MAC.substring(8,10), 16 ).toByte())
             SendData.set(7, Integer.parseInt(COM_MAC.substring(10,12), 16 ).toByte())
 
-//            COM_MAC.substring(0, 1)
-
-//            SendData.set(2, COM_MAC[0].toInt().toByte())
-//            SendData.set(3, COM_MAC[1].toInt().toByte())
-//            SendData.set(4, COM_MAC[2].toInt().toByte())
-//            SendData.set(5, COM_MAC[3].toInt().toByte())
-//            SendData.set(6, COM_MAC[4].toInt().toByte())
-//            SendData.set(7, COM_MAC[5].toInt().toByte())
-
             try {
                 OutPutStream.write(SendData)
                 OutPutStream.flush()
